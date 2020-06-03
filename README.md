@@ -29,4 +29,21 @@ public class NiceMenu extends JMenu {
 }
 ```
 
+Then, to invoke the menu, just create a new instance of the class.
+```java
+new NiceMenu().run();
+```
+or, if you want the menu to repeat until the user exits it, use
+```java
+new NiceMenu().runLooping();
+```
+Result:
+```
+===============================================================
+1 - Option One
+2 - Option Two
+0 - Exit
+Select the option:
+===============================================================
+```
 
