@@ -7,9 +7,9 @@ A menu library created to aid with the creator of console menus.
 ## Usage
 
 ```java
-import menulib.JMenu;
-import menulib.ExitOption;
-import menulib.Option;
+import io.github.nickacpt.jmenu.JMenu;
+import io.github.nickacpt.jmenu.annotations.ExitOption;
+import io.github.nickacpt.jmenu.annotations.Option;
 
 public class NiceMenu extends JMenu {
 
