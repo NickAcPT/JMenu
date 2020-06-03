@@ -23,7 +23,7 @@ public class NiceMenu extends JMenu {
         // Implementation here
     }
     
-    @Option(ordinal = 100, key = '2', description = "Exit")
+    @Option(ordinal = 100, key = '0', description = "Exit")
     @ExitOption
     public void exit() {}
 }
