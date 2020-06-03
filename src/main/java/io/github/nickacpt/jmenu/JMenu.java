@@ -12,7 +12,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class JMenu {
-    private JMenuLanguage language = new JMenuLanguage();
+    public static JMenuLanguage menuLanguage = new JMenuLanguage();
     private final PrintStream writer = System.out;
     private final Scanner reader = new Scanner(System.in);
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -71,17 +71,17 @@ public class JMenu {
     }
 
     public <T> T insert(String text, Function<Scanner, T> func) {
-        return read(language.INSERT_PREFIX + " " + text + ": ", func);
+        return read(menuLanguage.INSERT_PREFIX + " " + text + ": ", func);
     }
 
     public LocalDate date(String text) {
-        return insert(text + " " + language.DAY_MONTH_YEAR, scanner -> {
+        return insert(text + " " + menuLanguage.DAY_MONTH_YEAR, scanner -> {
             LocalDate date1 = null;
             do {
                 try {
                     date1 = LocalDate.parse(scanner.nextLine(), formatter);
                 } catch (DateTimeParseException e) {
-                    System.out.println(language.INCORRECT_DATE);
+                    System.out.println(menuLanguage.INCORRECT_DATE);
                 }
             } while (date1 == null);
 
@@ -93,7 +93,7 @@ public class JMenu {
         return insert(text + " (s/sim/y/yes n/nao/n/no)", boolScanner());
     }
     public boolean readBool(String text) {
-        return read(text + " (sim/nao/yes/no)", boolScanner());
+        return read(text + " (s/sim/y/yes n/nao/n/no)", boolScanner());
     }
 
     private Function<Scanner, Boolean> boolScanner() {
@@ -112,7 +112,7 @@ public class JMenu {
                     case "no":
                         return false;
                     default:
-                        System.out.println(language.INCORRECT_BOOL);
+                        System.out.println(menuLanguage.INCORRECT_BOOL);
                 }
             } while (true);
         };
@@ -139,7 +139,7 @@ public class JMenu {
         if (!isLooping) writeSplitter();
         definitions.forEach(MenuActionDefinition::printDescription);
 
-        String input = readLine(language.INSERT_THE_OPTION_PREFIX);
+        String input = readLine(menuLanguage.INSERT_THE_OPTION_PREFIX);
         Optional<MenuActionDefinition> selectedOption =
                 definitions.stream().filter(it -> it.getOption().key() == input.charAt(0)).findFirst();
 
