@@ -140,10 +140,11 @@ public class JMenu {
         definitions.forEach(MenuActionDefinition::printDescription);
 
         String input = readLine(menuLanguage.INSERT_THE_OPTION_PREFIX);
-        Optional<MenuActionDefinition> selectedOption =
-                definitions.stream().filter(it -> it.getOption().key() == input.charAt(0)).findFirst();
-
-        selectedOption.ifPresent(MenuActionDefinition::run);
+        if (input.length() > 0) {
+            Optional<MenuActionDefinition> selectedOption =
+                    definitions.stream().filter(it -> it.getOption().key() == input.charAt(0)).findFirst();
+            selectedOption.ifPresent(MenuActionDefinition::run);
+        }
         if (!isLooping) writeSplitter();
     }
 
